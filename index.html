@@ -2,228 +2,162 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Target Gift Card</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pandora — $500 Voucher</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: #f5f5f5;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px 16px 48px;
+body{
+  font-family:'Inter',sans-serif;
+  background:#F9EFF0;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-/* Popup bar */
-.popup-bar {
-  background: #fff;
-  border: 1px solid #ebebeb;
-  border-radius: 50px;
-  padding: 10px 18px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,.07);
-  margin-bottom: 16px;
-  width: 100%;
-  max-width: 420px;
-}
-.popup-bar .sparkle { font-size: 17px; }
-
-.popup-slide-wrap { overflow: hidden; height: 22px; flex: 1; }
-
-.popup-slide {
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.5s ease;
+/* ── TOP BAR ── */
+.topbar{
+  width:100%;
+  background:#E8C4C8;
+  text-align:center;
+  padding:10px 16px;
+  font-size:13.5px;
+  font-weight:500;
+  color:#555;
+  letter-spacing:.2px;
 }
 
-.popup-slide span {
-  font-size: 13.5px;
-  font-weight: 600;
-  color: #222;
-  line-height: 22px;
+/* ── PAGE BODY ── */
+.page{
+  max-width:520px;
+  width:100%;
+  padding:40px 24px 48px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-.popup-slide span em {
-  font-style: normal;
-  font-weight: 800;
-  background: #cc0000;
-  color: #fff;
-  padding: 1px 8px;
-  border-radius: 20px;
-  font-size: 12px;
+/* ── LOGO ── */
+.logo{
+  display:flex;flex-direction:column;align-items:center;
+  margin-bottom:28px;
+}
+.logo-crown{
+  font-size:18px;margin-bottom:2px;
+  color:#111;
+}
+.logo-wordmark{
+  font-size:32px;font-weight:800;letter-spacing:5px;
+  text-transform:uppercase;color:#111;
 }
 
-/* Card */
-.card {
-  width: 100%;
-  max-width: 420px;
-  background: #fff;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 2px 16px rgba(0,0,0,.08);
+/* ── SUBTITLE ── */
+.subtitle{
+  font-size:16px;color:#999;font-weight:400;
+  text-align:center;margin-bottom:32px;
+}
+.subtitle b{color:#333;font-weight:600}
+
+/* ── STEPS ── */
+.steps{
+  width:100%;
+  display:flex;flex-direction:column;gap:12px;
+  margin-bottom:32px;
+}
+.step{
+  background:#fff;
+  border-radius:16px;
+  padding:18px 20px;
+  display:flex;align-items:center;gap:18px;
+  box-shadow:0 1px 6px rgba(0,0,0,.04);
+}
+.snum{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  background:#D4899A;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:700;color:#fff;
+}
+.step-txt{
+  font-size:15px;font-weight:500;color:#222;
 }
 
-/* Logo */
-.logo-area {
-  padding: 30px 24px;
-  text-align: center;
+/* ── CTA ── */
+.cta{
+  display:block;width:100%;
+  text-decoration:none;
+  background:#111;color:#fff;
+  text-align:center;
+  font-size:18px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;
+  padding:20px;border-radius:50px;
+  margin-bottom:16px;
+  transition:background .15s,transform .15s;
+  position:relative;overflow:hidden;
 }
-
-.target-logo {
-  height: 70px;
+.cta:hover{background:#333;transform:translateY(-1px)}
+.cta:active{transform:scale(.98)}
+.cta::after{
+  content:'';position:absolute;top:-80%;left:-55%;width:26%;height:260%;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.1) 50%,transparent 70%);
+  transform:skewX(-14deg);animation:shim 3.5s infinite;
 }
+@keyframes shim{0%{left:-55%}100%{left:145%}}
 
-.brand-name {
-  font-size: 22px;
-  font-weight: 800;
-  color: #cc0000;
-}
-
-/* Reward */
-.reward-section {
-  padding: 20px;
-  text-align: center;
-}
-
-.reward-amount {
-  font-size: 68px;
-  font-weight: 800;
-  color: #cc0000;
-}
-
-.reward-label {
-  font-size: 12px;
-  color: #999;
-  letter-spacing: 2px;
-}
-
-/* Steps */
-.steps-section {
-  padding: 20px;
-}
-
-.step {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
-}
-
-.step-num {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #cc0000;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-.step-text {
-  font-size: 14px;
-}
-
-/* CTA */
-.cta-wrap {
-  padding: 20px;
-}
-
-.cta-btn {
-  display: block;
-  width: 100%;
-  background: #cc0000;
-  color: #fff;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 800;
-  padding: 18px;
-  border-radius: 50px;
-  text-decoration: none;
-  transition: 0.2s;
-}
-
-.cta-btn:hover {
-  background: #a30000;
-}
-
-/* urgency text */
-.urgency {
-  text-align: center;
-  font-size: 12px;
-  color: #888;
-  margin-top: 10px;
+/* ── FOOTER NOTE ── */
+.footnote{
+  font-size:12px;color:#aaa;text-align:center;line-height:1.6;
 }
 </style>
 </head>
-
 <body>
 
-<div class="popup-bar">
-  <span class="sparkle">✨</span>
-  <div class="popup-slide-wrap">
-    <div class="popup-slide" id="popupSlide"></div>
+<!-- TOP BAR -->
+<div class="topbar">3,500+ People Already Claimed</div>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- LOGO -->
+  <div class="logo">
+    <div class="logo-crown">♛</div>
+    <div class="logo-wordmark">Pandora</div>
   </div>
+
+  <!-- SUBTITLE -->
+  <div class="subtitle">Claim your <b>$500</b> Pandora voucher</div>
+
+  <!-- STEPS -->
+  <div class="steps">
+    <div class="step">
+      <div class="snum">1</div>
+      <div class="step-txt">Click "Claim Now"</div>
+    </div>
+    <div class="step">
+      <div class="snum">2</div>
+      <div class="step-txt">Enter your email and basic info</div>
+    </div>
+    <div class="step">
+      <div class="snum">3</div>
+      <div class="step-txt">Complete 4–5 sponsored deals</div>
+    </div>
+    <div class="step">
+      <div class="snum">4</div>
+      <div class="step-txt">Enjoy your $500 voucher!</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <a href="https://giftclick.org/aff_c?offer_id=4070&aff_id=2526" class="cta" target="_blank" rel="noopener">
+    Claim Now
+  </a>
+
+  <!-- FOOTNOTE -->
+  <div class="footnote">Completion of sponsored deals is required to claim your voucher.</div>
+
 </div>
-
-<div class="card">
-
-  <div class="logo-area">
-    <img class="target-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Target_logo.svg">
-    <div class="brand-name">Target</div>
-  </div>
-
-  <div class="reward-section">
-    <div class="reward-amount">$750</div>
-    <div class="reward-label">GIFT CARD</div>
-  </div>
-
-  <div class="steps-section">
-    <div class="step"><div class="step-num">1</div><div class="step-text">Click the button below</div></div>
-    <div class="step"><div class="step-num">2</div><div class="step-text">Enter basic info</div></div>
-    <div class="step"><div class="step-num">3</div><div class="step-text">Complete 3–5 deals</div></div>
-    <div class="step"><div class="step-num">4</div><div class="step-text">Claim your reward</div></div>
-  </div>
-
-  <div class="cta-wrap">
-    <a href="https://linkthem.net/aff_c?offer_id=1381&aff_id=2526&source=og" 
-       target="_blank"
-       onclick="window.location.href='https://linkthem.net/aff_c?offer_id=1381&aff_id=2526&source=og'"
-       class="cta-btn">
-       CLAIM NOW →
-    </a>
-
-    <div class="urgency">Limited spots available today</div>
-  </div>
-
-</div>
-
-<script>
-const entries = [
-  { name: "Amanda", amount: "$450" },
-  { name: "Jessica", amount: "$750" },
-  { name: "Priya", amount: "$300" },
-  { name: "Lauren", amount: "$600" },
-];
-
-const slide = document.getElementById('popupSlide');
-let idx = 0;
-
-function rotate() {
-  slide.innerHTML = `<span>${entries[idx].name} claimed <em>${entries[idx].amount}</em></span>`;
-  idx = (idx + 1) % entries.length;
-}
-
-rotate();
-setInterval(rotate, 2500);
-</script>
 
 </body>
 </html>
