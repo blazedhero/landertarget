@@ -1,1 +1,1 @@
-landertargets.github.io
+landertarget.github.io
